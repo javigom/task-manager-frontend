@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTheme, alpha } from '@mui/material/styles'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Drawer from '@mui/material/Drawer'
@@ -35,7 +36,10 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const drawerContent = (
     <Box sx={{ 
       height: '100%',
-      background: 'linear-gradient(180deg, #F5F7FB 0%, #FFFFFF 100%)',
+      background: theme => theme.palette.mode === 'dark'
+        ? `linear-gradient(180deg, ${alpha(theme.palette.background.default, 0.6)} 0%, ${alpha(theme.palette.background.paper, 0.8)} 100%)`
+        : 'linear-gradient(180deg, #F5F7FB 0%, #FFFFFF 100%)',
+      color: theme => theme.palette.text.primary,
       display: 'flex',
       flexDirection: 'column',
       pt: 4,
@@ -54,21 +58,21 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
             <ListItem key={item.path} disablePadding sx={{ mb: 1 }}>
               <ListItemButton 
                 onClick={() => handleNavigation(item.path)}
-                sx={{
+                sx={theme => ({
                   borderRadius: '12px',
                   py: 1.5,
                   px: 2,
                   transition: 'all 0.2s ease-in-out',
-                  backgroundColor: isSelected ? 'primary.main' : 'transparent',
-                  color: isSelected ? 'white' : 'text.primary',
+                  backgroundColor: isSelected ? theme.palette.primary.main : 'transparent',
+                  color: isSelected ? theme.palette.common.white : theme.palette.text.primary,
                   '&:hover': {
-                    backgroundColor: isSelected ? 'primary.dark' : 'rgba(91, 141, 239, 0.08)',
+                    backgroundColor: isSelected ? theme.palette.primary.dark : alpha(theme.palette.primary.main, 0.08),
                     transform: 'translateX(4px)'
                   },
                   '& .MuiListItemIcon-root': {
-                    color: isSelected ? 'white' : 'primary.main'
+                    color: isSelected ? theme.palette.common.white : theme.palette.primary.main
                   }
-                }}
+                })}
               >
                 <ListItemIcon sx={{ minWidth: 42 }}>
                   {item.icon}

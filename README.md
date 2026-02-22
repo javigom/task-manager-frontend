@@ -1,169 +1,141 @@
 # Task Manager Frontend
 
-Modern task management web application built with React, TypeScript, and Vite. Features authentication, internationalization (i18n), and a clean UI with Tailwind CSS.
+Modern task management web application built with React, TypeScript, and Vite, using Material UI for the component layer.
 
 ## 🚀 Features
 
-- ✅ **Authentication System** - JWT-based auth with login and registration
-- ✅ **Task Management** - Create, view, and manage tasks
-- ✅ **Internationalization** - Support for English (EN) and Spanish (ES)
-- ✅ **Protected Routes** - Automatic redirection based on authentication state
-- ✅ **Modern Stack** - React 18, TypeScript, Vite, TailwindCSS
-- ✅ **State Management** - TanStack Query (React Query) for server state
-- ✅ **Responsive Design** - Mobile-friendly with centered layouts and glitter effects
+- ✅ **Authentication** — JWT-based login and registration
+- ✅ **Task Management** — Create, view, and manage tasks with React Query
+- ✅ **Internationalization** — English (EN) and Spanish (ES) via i18next
+- ✅ **Dark Mode** — Persistent light/dark theme toggle
+- ✅ **Responsive Layout** — Collapsible sidebar on mobile
+- ✅ **Protected Routes** — Automatic redirect based on auth state
+- ✅ **Modern Stack** — React 18, TypeScript, Vite, MUI v5
 
 ## 📋 Prerequisites
 
 - Node.js 18+ (LTS recommended)
-- npm or yarn
+- npm
 - Backend API running (task-manager-backend)
 
 ## 🛠️ Tech Stack
 
-- **React 18** - UI framework
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **React Router** - Client-side routing
-- **TanStack Query** - Server state management
-- **Axios** - HTTP client
-- **i18next** - Internationalization
-- **Tailwind CSS** - Utility-first CSS
+| Layer | Library |
+|---|---|
+| UI framework | React 18 + TypeScript |
+| Build tool | Vite |
+| Component library | Material UI (MUI) v5 |
+| Routing | React Router v6 |
+| Server state | TanStack Query (React Query) v5 |
+| HTTP client | Axios |
+| Internationalization | i18next + react-i18next |
 
 ## 📦 Installation
 
-1. Clone the repository and navigate to the frontend directory:
-
 ```bash
 cd task-manager-frontend
-```
-
-1. Install dependencies:
-
-```bash
 npm install
 ```
 
-1. Create environment configuration:
+Create environment configuration:
 
 ```bash
 cp .env.example .env
 ```
 
-1. Configure your `.env` file:
+Configure `.env`:
 
 ```env
 # Backend API URL (default matches docker-compose setup)
 VITE_API_BASE=http://localhost:8001
-
-# Application environment
-VITE_APP_ENV=development
 ```
 
 ## 🚀 Usage
 
-### Development Server
-
-Start the development server with hot reload:
-
 ```bash
+# Development server with hot reload
 npm run dev
-```
 
-The app will be available at `http://localhost:3000` (or the port shown in terminal).
-
-### Build for Production
-
-Create an optimized production build:
-
-```bash
+# Production build
 npm run build
-```
 
-### Preview Production Build
-
-Preview the production build locally:
-
-```bash
+# Preview production build locally
 npm run preview
 ```
+
+The app will be available at `http://localhost:5173` (or the port shown in terminal).
 
 ## 📁 Project Structure
 
 ```
 src/
-├── context/          # React contexts (Auth)
-│   └── AuthContext.tsx
-├── pages/            # Page components
-│   ├── Login.tsx
-│   ├── Register.tsx
+├── config/               # App-wide configuration
+│   └── theme.ts          # MUI theme factory (light/dark)
+├── context/              # React contexts
+│   ├── AuthContext.tsx   # JWT auth state
+│   └── ThemeModeContext.tsx
+├── components/
+│   └── ui/               # Reusable UI primitives
+│       ├── Button.tsx
+│       ├── Footer.tsx
+│       ├── Header.tsx    # AppBar with language/theme/avatar controls
+│       ├── PageCard.tsx
+│       ├── Sidebar.tsx   # Responsive navigation drawer
+│       ├── TaskCard.tsx
+│       └── TextInput.tsx
+├── i18n/
+│   ├── index.ts          # i18next initialisation
+│   └── locales/
+│       ├── en.ts         # English translations
+│       └── es.ts         # Spanish translations
+├── layouts/
+│   ├── AppLayout.tsx     # Protected pages layout (sidebar + header + footer)
+│   └── AuthLayout.tsx    # Auth pages layout
+├── pages/
 │   ├── Dashboard.tsx
-│   └── Profile.tsx
-├── routes/           # Route configuration
-│   ├── AuthStack.tsx
-│   ├── AppStack.tsx
+│   ├── Login.tsx
+│   ├── Profile.tsx
+│   └── Register.tsx
+├── routes/
+│   ├── AppStack.tsx      # Protected route definitions
+│   ├── AuthStack.tsx     # Public route definitions
 │   └── ProtectedRoute.tsx
-├── services/         # API services
-│   └── api.ts
-├── i18n.ts           # Internationalization config
-├── main.tsx          # App entry point
-├── App.tsx           # Root component
-└── index.css         # Global styles
+├── services/
+│   └── api.ts            # Axios instance with auth interceptor
+├── main.tsx              # Entry point + theme/auth providers
+├── App.tsx               # Root component
+└── index.css             # Global CSS resets
 ```
 
 ## 🔐 Authentication
 
-The app uses JWT tokens stored in `localStorage`:
-
-- **Access Token** - Short-lived token for API requests
-- Stored under key: `access_token`
-- Automatically attached to API requests via Axios interceptor
-
-### Protected Routes
-
-Routes are protected using the `ProtectedRoute` component:
+JWT tokens are stored in `localStorage` under the key `access_token` and automatically attached to API requests via an Axios request interceptor.
 
 - Unauthenticated users are redirected to `/login`
 - Authenticated users can access `/` (Dashboard) and `/profile`
 
 ## 🌍 Internationalization
 
-The app supports multiple languages via i18next:
-
 - **Default language:** Spanish (ES)
-- **Available languages:** English (EN), Spanish (ES)
-- **Language selector:** Available in the header
-- **Persistence:** Selected language is saved to `localStorage`
+- **Available:** English (EN), Spanish (ES)
+- **Selector:** Header pill control — shows circular flag + language name
+- **Persistence:** Saved to `localStorage` under `lang`
 
-To add a new language:
+To add a new language, create a locale file in `src/i18n/locales/` and register it in `src/i18n/index.ts`.
 
-1. Edit `src/i18n.ts`
-2. Add translations under a new language key
-3. Update language selector in `App.tsx`
+## 🎨 Theming
 
-## 🎨 Styling
-
-Custom CSS classes for consistent styling:
-
-- `.auth-center` - Centers content vertically and horizontally
-- `.glitter-box` - Adds subtle shimmer animation background
-- `.native-input` - Styled input with native browser appearance
-- `.native-button` - Styled button with native browser appearance
+Theme is defined in `src/config/theme.ts` as a factory `getTheme(mode)`. Active mode is managed by `ThemeModeContext` and persisted to `localStorage` under `theme`. Toggle is available in the header.
 
 ## 🔧 Configuration
 
 ### API Base URL
 
-Configure the backend URL in `.env`:
-
 ```env
 VITE_API_BASE=http://localhost:8001
 ```
 
-### TypeScript
-
-TypeScript configuration is in `tsconfig.json`. Vite environment types are defined in `src/vite-env.d.ts`.
-
-## 📝 Available Scripts
+## 📝 Scripts
 
 | Command | Description |
 |---------|-------------|
@@ -173,50 +145,19 @@ TypeScript configuration is in `tsconfig.json`. Vite environment types are defin
 
 ## 🔗 Backend Integration
 
-This frontend connects to `task-manager-backend`. Ensure the backend is running:
+This frontend connects to `task-manager-backend`. Start the backend with:
 
 ```bash
-# In the backend directory
-docker compose up --build
+cd task-manager-backend
+docker compose up
 ```
-
-The backend should be accessible at the URL configured in `VITE_API_BASE`.
 
 ## 🐛 Troubleshooting
 
-### CORS Errors
-
-Ensure the backend has CORS configured to allow requests from `http://localhost:3000`.
-
-### API Connection Issues
-
-- Check that `VITE_API_BASE` matches your backend URL
-- Verify the backend is running and accessible
-- Check browser console for detailed error messages
-
-### Authentication Issues
-
-- Clear `localStorage` and try logging in again
-- Check that the backend JWT configuration is correct
-
-## 🚧 Future Enhancements
-
-- [ ] Add react-hook-form and zod for form validation
-- [ ] Implement refresh token flow
-- [ ] Add task editing and deletion
-- [ ] Add task filtering and sorting
-- [ ] Add user profile editing
-- [ ] Implement real-time updates with WebSockets
-- [ ] Add dark mode support
+- **CORS errors** — ensure the backend allows requests from the Vite dev server origin
+- **API connection** — verify `VITE_API_BASE` matches the running backend URL
+- **Auth issues** — clear `localStorage` and log in again
 
 ## 📄 License
 
-This project is part of the task-manager system.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+MIT

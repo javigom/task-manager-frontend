@@ -47,7 +47,18 @@ export default function Dashboard() {
       <Divider sx={{ mb: 2 }} />
 
       <Grid container spacing={2} alignItems="stretch">
-        <Grid item xs={12} md={3} sx={{ display: 'flex', flexDirection: 'column', flex: '0 0 320px', maxWidth: { md: '320px' } }}>
+        <Grid
+          item
+          xs={12}
+          md={3}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: { xs: '100%', md: '320px' },
+            flex: { xs: '0 0 auto', md: '0 0 320px' },
+            maxWidth: { md: '320px' }
+          }}
+        >
           <PageCard>
             <Typography variant="subtitle1" fontWeight={600} sx={{ mb: 1.5 }}>{t('dashboard.create')}</Typography>
             <form onSubmit={handleCreate} style={{ display: 'grid', gap: 10 }}>
