@@ -53,41 +53,41 @@ export default function Profile() {
       </Stack>
       <Divider sx={{ mb: 2 }} />
 
-      <PageCard>
-        <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 2 }}>
-          <Avatar sx={{ width: 56, height: 56, fontSize: 24, bgcolor: 'primary.main' }}>{initial}</Avatar>
-          <Box>
-            <Typography variant="h6" fontWeight={600}>{displayName}</Typography>
-            {user?.email && (
-              <Typography variant="body2" color="text.secondary">{user.email}</Typography>
+      <PageCard sx={{ height: 'auto' }}>
+          <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 2 }}>
+            <Avatar sx={{ width: 56, height: 56, fontSize: 24, bgcolor: 'primary.main' }}>{initial}</Avatar>
+            <Box>
+              <Typography variant="h6" fontWeight={600}>{displayName}</Typography>
+              {user?.email && (
+                <Typography variant="body2" color="text.secondary">{user.email}</Typography>
+              )}
+            </Box>
+          </Stack>
+
+          <Divider sx={{ mb: 2 }} />
+
+          <Stack spacing={1.5} sx={{ mb: 2.5 }}>
+            {user?.full_name && (
+              <Stack direction="row" spacing={1} alignItems="center">
+                <PersonIcon fontSize="small" sx={{ color: 'text.secondary' }} />
+                <Typography variant="body2">{user.full_name}</Typography>
+              </Stack>
             )}
-          </Box>
-        </Stack>
+            {user?.email && (
+              <Stack direction="row" spacing={1} alignItems="center">
+                <EmailIcon fontSize="small" sx={{ color: 'text.secondary' }} />
+                <Typography variant="body2">{user.email}</Typography>
+              </Stack>
+            )}
+            {created && (
+              <Stack direction="row" spacing={1} alignItems="center">
+                <CalendarTodayIcon fontSize="small" sx={{ color: 'text.secondary' }} />
+                <Typography variant="body2" color="text.secondary">{t('profile.created_at', { date: created })}</Typography>
+              </Stack>
+            )}
+          </Stack>
 
-        <Divider sx={{ mb: 2 }} />
-
-        <Stack spacing={1.5} sx={{ mb: 2.5 }}>
-          {user?.full_name && (
-            <Stack direction="row" spacing={1} alignItems="center">
-              <PersonIcon fontSize="small" sx={{ color: 'text.secondary' }} />
-              <Typography variant="body2">{user.full_name}</Typography>
-            </Stack>
-          )}
-          {user?.email && (
-            <Stack direction="row" spacing={1} alignItems="center">
-              <EmailIcon fontSize="small" sx={{ color: 'text.secondary' }} />
-              <Typography variant="body2">{user.email}</Typography>
-            </Stack>
-          )}
-          {created && (
-            <Stack direction="row" spacing={1} alignItems="center">
-              <CalendarTodayIcon fontSize="small" sx={{ color: 'text.secondary' }} />
-              <Typography variant="body2" color="text.secondary">{t('profile.created_at', { date: created })}</Typography>
-            </Stack>
-          )}
-        </Stack>
-
-        <Button onClick={handleLogout} variant="outlined">{t('profile.logout')}</Button>
+          <Button onClick={handleLogout} variant="outlined">{t('profile.logout')}</Button>
       </PageCard>
     </>
   )
