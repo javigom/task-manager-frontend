@@ -1,11 +1,8 @@
 const en = {
     "app.title": "Task Manager",
-    "nav.profile": "Profile",
-    "nav.login": "Login",
-    "nav.register": "Register",
+
 
     "login.title": "Login",
-    "login.welcome": "Hello, Welcome!",
     "login.welcome_message": "Don't have an account?",
     "login.email": "Email",
     "login.password": "Password",
@@ -13,11 +10,9 @@ const en = {
     "login.register": "Register",
     "login.success": "Authenticated",
     "login.error": "Login error",
-    "login.no_account": "Don't have an account?",
-    "register.have_account": "Already have an account?",
+
 
     "register.title": "Register",
-    "register.welcome": "Welcome Back!",
     "register.welcome_message": "Already have an account?",
     "register.email": "Email",
     "register.fullname": "Full name",
@@ -49,8 +44,7 @@ const en = {
     "sidebar.logout": "Sign out",
 
     "profile.title": "Profile",
-    "profile.user": "User: {{user}}",
-    "profile.email": "Email: {{email}}",
+
     "profile.created_at": "Created: {{date}}",
     "profile.logout": "Sign out",
 

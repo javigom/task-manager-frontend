@@ -1,11 +1,8 @@
 const es = {
     "app.title": "Gestor de Tareas",
-    "nav.profile": "Perfil",
-    "nav.login": "Iniciar sesión",
-    "nav.register": "Registrarse",
+
 
     "login.title": "Iniciar sesión",
-    "login.welcome": "¡Hola, Bienvenido!",
     "login.welcome_message": "¿No tienes una cuenta?",
     "login.email": "Correo electrónico",
     "login.password": "Contraseña",
@@ -13,19 +10,17 @@ const es = {
     "login.register": "Registrarse",
     "login.success": "Autenticado correctamente",
     "login.error": "Error al iniciar sesión",
-    "login.no_account": "¿No tienes cuenta?",
-    "register.have_account": "¿Ya tienes cuenta?",
+
 
     "register.title": "Crear cuenta",
-    "register.welcome": "¡Bienvenido de nuevo!",
-    "register.welcome_message": "¿Ya tienes una cuenta?",
+    "register.welcome_message": "¿Ya tienes una cuenta? Inicia sesión para entrar.",
     "register.email": "Correo electrónico",
     "register.fullname": "Nombre completo",
     "register.password": "Contraseña",
     "register.password_hint": "Mínimo 8 caracteres, mayúscula, minúscula y número.",
     "register.submit": "Crear cuenta",
-    "register.success": "Registro exitoso. Redirigiendo...",
-    "register.error": "Error en el registro",
+    "register.success": "Te has registrado correctamente. Iniciando sesión...",
+    "register.error": "No se ha podido completar el registro. Comprueba los datos e inténtalo de nuevo.",
     "register.validation.min_length": "La contraseña debe tener al menos 8 caracteres",
     "register.validation.max_length": "La contraseña es demasiado larga",
     "register.validation.uppercase": "La contraseña debe contener al menos una mayúscula",
@@ -49,8 +44,7 @@ const es = {
     "sidebar.logout": "Cerrar sesión",
 
     "profile.title": "Perfil",
-    "profile.user": "Usuario: {{user}}",
-    "profile.email": "Correo: {{email}}",
+
     "profile.created_at": "Creado: {{date}}",
     "profile.logout": "Cerrar sesión",
 

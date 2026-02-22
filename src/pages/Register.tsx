@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from '../context/AuthContext'
 import Typography from '@mui/material/Typography'
 import TextInput from '../components/ui/TextInput'
 import Button from '../components/ui/Button'
@@ -18,6 +19,7 @@ export default function Register() {
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const { login } = useAuth()
 
   function validatePassword(p: string) {
     if (p.length < 8) return t('register.validation.min_length')
@@ -38,9 +40,24 @@ export default function Register() {
       return
     }
     try {
-      const res = await api.post('/auth/register', { email, password, full_name: fullName })
+      await api.post('/auth/register', { email, password, full_name: fullName })
       setMsg(t('register.success'))
-      setTimeout(() => navigate('/login'), 900)
+      // Try to sign in automatically after registration
+      try {
+        const fd = new FormData()
+        fd.set('username', email)
+        fd.set('password', password)
+        const res2 = await api.post('/auth/token', fd)
+        const { access_token } = res2.data
+        if (access_token) {
+          login(access_token)
+          navigate('/')
+          return
+        }
+      } catch (e) {
+        // fallback to manual login
+      }
+      navigate('/login')
     } catch (err: any) {
       const serverMsg = err?.response?.data?.detail || err?.message || t('register.error')
       setError(String(serverMsg))
