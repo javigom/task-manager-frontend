@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 import Dashboard from '../pages/Dashboard'
 import Profile from '../pages/Profile'
 import ProtectedRoute from './ProtectedRoute'
-
 export default function AppStack() {
   return (
     <Routes>

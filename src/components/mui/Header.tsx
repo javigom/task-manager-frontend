@@ -52,22 +52,20 @@ export default function Header() {
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Select
+              value={i18n.language || 'es'}
+              size="small"
+              onChange={handleLangChange}
+              sx={{ minWidth: 56, '& .MuiOutlinedInput-notchedOutline': { border: 'none' }, '& .MuiSelect-select': { display: 'flex', alignItems: 'center', gap: 1 } }}
+            >
+              <MenuItem value="es">🇪🇸 ES</MenuItem>
+              <MenuItem value="en">🇺🇸 EN</MenuItem>
+            </Select>
           {token && checked ? (
-            <>
               <Stack direction="row" spacing={1} alignItems="center">
                 <Avatar component={RouterLink} to="/profile" sx={{ width: 32, height: 32, textDecoration: 'none' }}>{initial || 'U'}</Avatar>
-                <Select value={i18n.language || 'es'} size="small" onChange={handleLangChange} sx={{ minWidth: 80 }}>
-                  <MenuItem value="es">🇪🇸 Español</MenuItem>
-                  <MenuItem value="en">🇺🇸 English</MenuItem>
-                </Select>
               </Stack>
-            </>
-          ) : (
-            <Select value={i18n.language || 'es'} size="small" onChange={handleLangChange} sx={{ minWidth: 80 }}>
-              <MenuItem value="es">🇪🇸 Español</MenuItem>
-              <MenuItem value="en">🇺🇸 English</MenuItem>
-            </Select>
-          )}
+          ): <></>}
         </Box>
       </Toolbar>
     </AppBar>

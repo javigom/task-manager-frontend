@@ -47,7 +47,7 @@ export default function Dashboard() {
       <Divider sx={{ mb: 2 }} />
 
       <Grid container spacing={2} alignItems="stretch">
-        <Grid item xs={12} md={3} sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Grid item xs={12} md={3} sx={{ display: 'flex', flexDirection: 'column', flex: '0 0 320px', maxWidth: { md: '320px' } }}>
           <PageCard>
             <Typography variant="subtitle1" fontWeight={600} sx={{ mb: 1.5 }}>{t('dashboard.create')}</Typography>
             <form onSubmit={handleCreate} style={{ display: 'grid', gap: 10 }}>
@@ -76,8 +76,8 @@ export default function Dashboard() {
           </PageCard>
         </Grid>
 
-        <Grid item xs={12} md={9} sx={{ display: 'flex', flexDirection: 'column' }}>
-          <PageCard>
+        <Grid item xs={12} md={9} sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <PageCard sx={{ width: '100%' }}>
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1.5 }}>
               <Typography variant="subtitle1" fontWeight={600}>{t('dashboard.tasks_title')}</Typography>
               {data && <Chip label={data.length} size="small" color="primary" />}
