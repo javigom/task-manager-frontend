@@ -5,10 +5,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import theme from './theme'
+import theme from './config/theme'
 import App from './App'
 import './index.css'
-import './i18n'
+import './i18n/index'
 
 const queryClient = new QueryClient()
 

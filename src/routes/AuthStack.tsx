@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import AuthLayout from '../components/mui/AuthLayout'
+import AuthLayout from '../layouts/AuthLayout'
 
 export default function AuthStack() {
   return (
