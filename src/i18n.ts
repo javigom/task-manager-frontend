@@ -16,6 +16,8 @@ const resources = {
             "login.register": "Register",
             "login.success": "Authenticated",
             "login.error": "Login error",
+            "login.no_account": "Don't have an account? Register",
+            "register.have_account": "Already have an account? Login",
 
             "register.title": "Register",
             "register.email": "Email",
@@ -40,10 +42,16 @@ const resources = {
             "dashboard.loading": "Loading tasks...",
             "dashboard.no_tasks": "You have no tasks yet.",
             "dashboard.error": "Error loading tasks",
+            "dashboard.create_success": "Task created successfully!",
+            "dashboard.create_error": "Error creating task. Try again.",
 
             "profile.title": "Profile",
             "profile.user": "User: {{user}}",
-            "profile.logout": "Sign out"
+            "profile.email": "Email: {{email}}",
+            "profile.created_at": "Created: {{date}}",
+            "profile.logout": "Sign out",
+
+            "footer.developed_by": "Developed by"
         }
     },
     es: {
@@ -60,6 +68,8 @@ const resources = {
             "login.register": "Registrar",
             "login.success": "Autenticado",
             "login.error": "Error de login",
+            "login.no_account": "¿No tienes cuenta? Regístrate",
+            "register.have_account": "¿Ya tienes cuenta? Inicia sesión",
 
             "register.title": "Registrar usuario",
             "register.email": "Email",
@@ -84,10 +94,16 @@ const resources = {
             "dashboard.loading": "Cargando tareas...",
             "dashboard.no_tasks": "No tienes tareas aún.",
             "dashboard.error": "Error cargando tareas",
+            "dashboard.create_success": "¡Tarea creada correctamente!",
+            "dashboard.create_error": "Error al crear la tarea. Inténtalo de nuevo.",
 
             "profile.title": "Perfil",
             "profile.user": "Usuario: {{user}}",
-            "profile.logout": "Cerrar sesión"
+            "profile.email": "Email: {{email}}",
+            "profile.created_at": "Creado: {{date}}",
+            "profile.logout": "Cerrar sesión",
+
+            "footer.developed_by": "Desarrollado por"
         }
     }
 }

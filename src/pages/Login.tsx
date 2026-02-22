@@ -3,6 +3,14 @@ import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useTranslation } from 'react-i18next'
+import MuiAuthCard from '../components/MuiAuthCard'
+import TextInput from '../components/mui/TextInput'
+import InputAdornment from '@mui/material/InputAdornment'
+import IconButton from '@mui/material/IconButton'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import Button from '../components/mui/Button'
+import Typography from '@mui/material/Typography'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -12,6 +20,11 @@ export default function Login() {
   const navigate = useNavigate()
   const { login } = useAuth()
   const { t } = useTranslation()
+  const [showPassword, setShowPassword] = useState(false)
+
+  function toggleShow() {
+    setShowPassword(s => !s)
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -30,25 +43,32 @@ export default function Login() {
   }
 
   return (
-    <div className="auth-center">
-      <div className="glitter-box bg-white p-6 rounded shadow max-w-md w-full">
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <h2 className="text-lg font-medium mb-4">{t('login.title')}</h2>
-          <div>
-            <label className="block">{t('login.email')}</label>
-            <input className="native-input mt-1 w-full" value={email} onChange={e => setEmail(e.target.value)} />
-          </div>
-          <div>
-            <label className="block">{t('login.password')}</label>
-            <input type="password" className="native-input mt-1 w-full" value={password} onChange={e => setPassword(e.target.value)} />
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="native-button">{t('login.submit')}</button>
-            {msg && <p className="text-sm">{msg}</p>}
-            <Link to="/register" className="text-sm text-blue-600">{t('login.register')}</Link>
-          </div>
-        </form>
-      </div>
-    </div>
+    <MuiAuthCard title={t('login.title')}>
+      <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 12 }}>
+        <TextInput label={t('login.email')} value={email} onChange={e => setEmail(e.target.value)} />
+        <TextInput
+          label={t('login.password')}
+          type={showPassword ? 'text' : 'password'}
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={toggleShow} edge="end" size="small">
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
+        />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <Button type="submit">{t('login.submit')}</Button>
+          {msg && <Typography variant="body2">{msg}</Typography>}
+        </div>
+        <Typography variant="body2" sx={{ mt: 1 }}>
+          <Link to="/register">{t('login.no_account')}</Link>
+        </Typography>
+      </form>
+    </MuiAuthCard>
   )
 }

@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import MuiAuthCard from '../components/MuiAuthCard'
+import Typography from '@mui/material/Typography'
+import TextInput from '../components/mui/TextInput'
+import Button from '../components/mui/Button'
 
 export default function Register() {
   const [email, setEmail] = useState('')
@@ -42,31 +46,20 @@ export default function Register() {
   }
 
   return (
-    <div className="auth-center">
-      <div className="glitter-box bg-white p-6 rounded shadow max-w-md w-full">
-        <h2 className="text-lg font-medium mb-4">{t('register.title')}</h2>
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <div>
-            <label className="block">{t('register.email')}</label>
-            <input className="native-input mt-1 w-full" value={email} onChange={e => setEmail(e.target.value)} />
-          </div>
-          <div>
-            <label className="block">{t('register.fullname')}</label>
-            <input className="native-input mt-1 w-full" value={fullName} onChange={e => setFullName(e.target.value)} />
-          </div>
-          <div>
-            <label className="block">{t('register.password')}</label>
-            <input type="password" className="native-input mt-1 w-full" value={password} onChange={e => setPassword(e.target.value)} />
-            <p className="text-xs text-gray-500 mt-1">{t('register.password_hint')}</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <button type="submit" className="native-button">{t('register.submit')}</button>
-            <Link to="/login" className="text-sm text-blue-600">{t('nav.login')}</Link>
-          </div>
-          {msg && <p className="text-sm text-green-600">{msg}</p>}
-          {error && <p className="text-sm text-red-600">{error}</p>}
-        </form>
-      </div>
-    </div>
+    <MuiAuthCard title={t('register.title')}>
+      <form onSubmit={handleSubmit}>
+        <TextInput label={t('register.email')} value={email} onChange={e => setEmail(e.target.value)} />
+        <TextInput label={t('register.fullname')} value={fullName} onChange={e => setFullName(e.target.value)} />
+        <TextInput label={t('register.password')} type="password" value={password} onChange={e => setPassword(e.target.value)} helperText={t('register.password_hint')} />
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 8 }}>
+          <Button type="submit">{t('register.submit')}</Button>
+        </div>
+        {msg && <p style={{ color: 'green' }}>{msg}</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <Typography variant="body2" sx={{ mt: 1 }}>
+          <Link to="/login">{t('register.have_account')}</Link>
+        </Typography>
+      </form>
+    </MuiAuthCard>
   )
 }
