@@ -137,18 +137,20 @@ export default function Header({ onMobileMenuClick }: { onMobileMenuClick?: () =
               px: 0,
               borderRadius: 1,
               bgcolor: 'transparent',
+              cursor: 'pointer',
+              '&:hover': { bgcolor: alpha(theme.palette.action.selected, 0.12) },
               '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
               '& .MuiSelect-select': { display: 'flex', alignItems: 'center', justifyContent: 'flex-start', height: 32, px: '6px !important' }
             })}
             inputProps={{ 'aria-label': 'language' }}
           >
-            <MenuItem value="es" sx={{ py: 0.5, px: 1 }}>
+            <MenuItem value="es" sx={{ py: 0.5, px: 1, '&:hover': { bgcolor: theme => alpha(theme.palette.action.selected, 0.06) } }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <FlagCircle code="ES" />
                 <Typography variant="body2">Español</Typography>
               </Box>
             </MenuItem>
-            <MenuItem value="en" sx={{ py: 0.5, px: 1 }}>
+            <MenuItem value="en" sx={{ py: 0.5, px: 1, '&:hover': { bgcolor: theme => alpha(theme.palette.action.selected, 0.06) } }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <FlagCircle code="EN" />
                 <Typography variant="body2">English</Typography>

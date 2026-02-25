@@ -18,6 +18,7 @@ const en = {
     "register.fullname": "Full name",
     "register.password": "Password",
     "register.password_hint": "Minimum 8 characters, uppercase, lowercase and number.",
+    "register.password_confirm": "Confirm password",
     "register.submit": "Create account",
     "register.success": "Registration successful. Redirecting...",
     "register.error": "Registration error",
@@ -49,6 +50,10 @@ const en = {
     "profile.logout": "Sign out",
 
     "footer.developed_by": "Developed by"
+    ,
+    "notfound.title": "Page not found",
+    "notfound.message": "The page you requested does not exist.",
+    "notfound.home": "Go to dashboard"
 }
 
 export default en

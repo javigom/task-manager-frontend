@@ -18,6 +18,7 @@ const es = {
     "register.fullname": "Nombre completo",
     "register.password": "Contraseña",
     "register.password_hint": "Mínimo 8 caracteres, mayúscula, minúscula y número.",
+    "register.password_confirm": "Confirmar contraseña",
     "register.submit": "Crear cuenta",
     "register.success": "Te has registrado correctamente. Iniciando sesión...",
     "register.error": "No se ha podido completar el registro. Comprueba los datos e inténtalo de nuevo.",
@@ -49,6 +50,10 @@ const es = {
     "profile.logout": "Cerrar sesión",
 
     "footer.developed_by": "Desarrollado por"
+    ,
+    "notfound.title": "Página no encontrada",
+    "notfound.message": "La página que has solicitado no existe.",
+    "notfound.home": "Ir al panel"
 }
 
 export default es

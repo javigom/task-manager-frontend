@@ -6,6 +6,10 @@ import { useAuth } from '../context/AuthContext'
 import Typography from '@mui/material/Typography'
 import TextInput from '../components/ui/TextInput'
 import Button from '../components/ui/Button'
+import InputAdornment from '@mui/material/InputAdornment'
+import IconButton from '@mui/material/IconButton'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Stack from '@mui/material/Stack'
@@ -15,6 +19,8 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [fullName, setFullName] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [msg, setMsg] = useState('')
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
@@ -37,6 +43,10 @@ export default function Register() {
     const v = validatePassword(password)
     if (v) {
       setError(v)
+      return
+    }
+    if (password !== confirmPassword) {
+      setError(t('register.validation.match'))
       return
     }
     try {
@@ -146,11 +156,37 @@ export default function Register() {
               />
               <TextInput 
                 label={t('register.password')} 
-                type="password" 
+                type={showPassword ? 'text' : 'password'} 
                 value={password} 
                 onChange={e => setPassword(e.target.value)} 
                 helperText={t('register.password_hint')}
                 fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword(s => !s)} edge="end" size="small">
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+
+              <TextInput
+                label={t('register.password_confirm')}
+                type={showPassword ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={e => setConfirmPassword(e.target.value)}
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword(s => !s)} edge="end" size="small">
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
               />
               
               <Button type="submit" fullWidth sx={{ py: 1.5 }}>
