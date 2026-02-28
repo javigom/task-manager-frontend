@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import Button from '../components/ui/Button'
-import PageCard from '../components/ui/PageCard'
+import Button from '../../components/ui/Button'
+import PageCard from '../../components/ui/PageCard'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
@@ -12,7 +12,7 @@ import Box from '@mui/material/Box'
 import EmailIcon from '@mui/icons-material/Email'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import PersonIcon from '@mui/icons-material/Person'
-import api from '../services/api'
+import api from '../../services/api'
 
 export default function Profile() {
   const { token, logout } = useAuth()
