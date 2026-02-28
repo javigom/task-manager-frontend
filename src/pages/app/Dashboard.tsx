@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { fetchTasks, createTask } from '../../services/api'
 import { useTranslation } from 'react-i18next'
-import TextInput from '../../components/ui/TextInput'
-import Button from '../../components/ui/Button'
-import TaskCard from '../../components/ui/TaskCard'
-import PageCard from '../../components/ui/PageCard'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+
 import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
-import Divider from '@mui/material/Divider'
 import Chip from '@mui/material/Chip'
 import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
+
+import { fetchTasks, createTask } from '@services/api'
+import TextInput from '@components/common/TextInput'
+import Button from '@components/common/Button'
+import TaskCard from '@components/tasks/TaskCard'
+import PageCard from '@components/common/PageCard'
 
 export default function Dashboard() {
   const qc = useQueryClient()
@@ -40,17 +42,9 @@ export default function Dashboard() {
   }
 
   return (
-    <>
-      <Stack direction="row" alignItems="center" sx={{ mb: 1.5 }}>
-        <Typography variant="h5" fontWeight={700}>{t('dashboard.title')}</Typography>
-      </Stack>
-      <Divider sx={{ mb: 2 }} />
-
       <Grid container spacing={2} alignItems="stretch">
         <Grid
-          item
-          xs={12}
-          md={3}
+          size={{ xs: 12, md: 3 }}
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -61,7 +55,7 @@ export default function Dashboard() {
         >
           <PageCard>
             <Typography variant="subtitle1" fontWeight={600} sx={{ mb: 1.5 }}>{t('dashboard.create')}</Typography>
-            <form onSubmit={handleCreate} style={{ display: 'grid', gap: 10 }}>
+            <Box component="form" onSubmit={handleCreate} style={{ display: 'grid', gap: 10 }}>
               <TextInput
                 placeholder={t('dashboard.title_placeholder')}
                 value={title}
@@ -83,11 +77,11 @@ export default function Dashboard() {
               </Stack>
               {created && <Alert severity="success" sx={{ py: 0.5 }}>{t('dashboard.create_success')}</Alert>}
               {mutation.isError && <Alert severity="error" sx={{ py: 0.5 }}>{t('dashboard.create_error')}</Alert>}
-            </form>
+            </Box>
           </PageCard>
         </Grid>
 
-        <Grid item xs={12} md={9} sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <Grid size={{ xs: 12, md: 9 }} sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
           <PageCard sx={{ width: '100%' }}>
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1.5 }}>
               <Typography variant="subtitle1" fontWeight={600}>{t('dashboard.tasks_title')}</Typography>
@@ -106,6 +100,5 @@ export default function Dashboard() {
           </PageCard>
         </Grid>
       </Grid>
-    </>
   )
 }

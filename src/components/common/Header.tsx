@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
 import { alpha } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
@@ -17,12 +20,10 @@ import IconButton from '@mui/material/IconButton'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 import MenuIcon from '@mui/icons-material/Menu'
-import api from '../../services/api'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
-import { useTranslation } from 'react-i18next'
-import { useContext } from 'react'
-import ThemeModeContext from '../../context/ThemeModeContext'
+
+import api from '@services/api'
+import { useAuth } from '@context/AuthContext'
+import ThemeModeContext from '@context/ThemeModeContext'
 
 export default function Header({ onMobileMenuClick }: { onMobileMenuClick?: () => void }) {
   const { token, logout, checked } = useAuth()

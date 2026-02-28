@@ -1,12 +1,15 @@
 import React, { useMemo, useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { BrowserRouter } from 'react-router-dom'
-import { AuthProvider } from './context/AuthContext'
+
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import getTheme from './config/theme'
-import { ThemeModeContext } from './context/ThemeModeContext'
+
+import { AuthProvider } from '@context/AuthContext'
+import getTheme from '@config/theme'
+import { ThemeModeContext } from '@context/ThemeModeContext'
+
 import App from './App'
 import './index.css'
 import './i18n/index'

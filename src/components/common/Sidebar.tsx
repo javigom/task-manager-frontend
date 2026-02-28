@@ -1,7 +1,8 @@
 import React from 'react'
-import { useTheme, alpha } from '@mui/material/styles'
+import { alpha } from '@mui/material/styles'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'

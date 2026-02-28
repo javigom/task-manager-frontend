@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import Button from '../../components/ui/Button'
-import PageCard from '../../components/ui/PageCard'
+
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
@@ -12,7 +10,11 @@ import Box from '@mui/material/Box'
 import EmailIcon from '@mui/icons-material/Email'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import PersonIcon from '@mui/icons-material/Person'
-import api from '../../services/api'
+
+import Button from '@components/common/Button'
+import PageCard from '@components/common/PageCard'
+import { useAuth } from '@context/AuthContext'
+import api from '@services/api'
 
 export default function Profile() {
   const { token, logout } = useAuth()
@@ -48,11 +50,6 @@ export default function Profile() {
 
   return (
     <>
-      <Stack direction="row" alignItems="center" sx={{ mb: 1.5 }}>
-        <Typography variant="h5" fontWeight={700}>{t('profile.title')}</Typography>
-      </Stack>
-      <Divider sx={{ mb: 2 }} />
-
       <PageCard sx={{ height: 'auto' }}>
           <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 2 }}>
             <Avatar sx={{ width: 56, height: 56, fontSize: 24, bgcolor: 'primary.main' }}>{initial}</Avatar>

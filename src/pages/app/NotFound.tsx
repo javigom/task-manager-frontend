@@ -1,9 +1,11 @@
 import React from 'react'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Button from '../../components/ui/Button'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+
+import Button from '@components/common/Button'
 
 export default function NotFound() {
   const navigate = useNavigate()

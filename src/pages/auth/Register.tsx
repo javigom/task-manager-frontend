@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import api from '../../services/api'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from '../../context/AuthContext'
+
 import Typography from '@mui/material/Typography'
-import TextInput from '../../components/ui/TextInput'
-import Button from '../../components/ui/Button'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import Visibility from '@mui/icons-material/Visibility'
@@ -14,6 +11,12 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Stack from '@mui/material/Stack'
 import Alert from '@mui/material/Alert'
+
+import TextInput from '@components/common/TextInput'
+import Button from '@components/common/Button'
+import { useAuth } from '@context/AuthContext'
+import api from '@services/api'
+
 
 export default function Register() {
   const [email, setEmail] = useState('')

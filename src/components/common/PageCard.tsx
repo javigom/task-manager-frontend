@@ -1,10 +1,11 @@
 import React from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import { SxProps, Theme } from '@mui/material/styles'
 
 type Props = {
   children: React.ReactNode
-  sx?: any
+  sx?: SxProps<Theme>
 }
 
 export default function PageCard({ children, sx }: Props) {

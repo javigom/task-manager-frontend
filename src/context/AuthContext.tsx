@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import api, { setAccessToken } from '../services/api'
+import api, { setAccessToken } from '@services/api'
 
 type AuthContextType = {
   token: string | null

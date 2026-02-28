@@ -1,8 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Dashboard from '../pages/app/Dashboard'
-import Profile from '../pages/app/Profile'
-import NotFound from '../pages/app/NotFound'
+import Dashboard from '@pages/app/Dashboard'
+import Profile from '@pages/app/Profile'
+import NotFound from '@pages/app/NotFound'
 
 export default function AppStack() {
   return (

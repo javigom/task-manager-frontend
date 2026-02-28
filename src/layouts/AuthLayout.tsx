@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '@mui/material/Container'
-import Header from '../components/ui/Header'
-import Footer from '../components/ui/Footer'
+import Header from '@components/common/Header'
+import Footer from '@components/common/Footer'
 import Box from '@mui/material/Box'
 
 interface AuthLayoutProps {
